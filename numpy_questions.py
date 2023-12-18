@@ -39,9 +39,11 @@ def max_index(X):
     """
     i = 0
     j = 0
-
     # TODO
 
+    assert isinstance(X,np.ndarray)
+    assert len(X.shape) == 2
+    (i,j) = np.unravel_index(X.argmax(), X.shape)
     return i, j
 
 
@@ -64,4 +66,7 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    array_of_n = np.arange(1,n_terms+1,1)
+    array_of_4_n2 = 4*array_of_n*array_of_n
+    wallis_terms = array_of_4_n2/(array_of_4_n2-1)
+    return np.product(wallis_terms)
